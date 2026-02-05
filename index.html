@@ -1287,6 +1287,7 @@
                     if (shakeCount > 2) {
                         console.log('SHAKE DETECTED!');
                         triggerFlip();
+                        toggleImage();
                         shakeCount = 0;
                         setTimeout(() => { shakeCount = 0; }, 1000);
                     }
