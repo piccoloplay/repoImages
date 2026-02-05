@@ -842,7 +842,7 @@
                 <div class="image-wrapper">
                     <img src="https://raw.githubusercontent.com/piccoloplay/repoImages/main/profilo.png" alt="Prof. Vincenzo Vespri" class="hero-photo">
                 </div>
-                <p class="shake-hint">shake to flip or double tap 😉</p>
+                <p class="shake-hint">tap to flip 😉</p>
             </div>
 
             <div class="hero-content">
@@ -1206,81 +1206,85 @@
             // setInterval(nextSlide, 5000);
         }
 
-        // Shake to Flip - Improved for Android
+        // Shake to Flip - Ultra Simplified for Testing
         const heroPhoto = document.querySelector('.hero-photo');
+        const imageWrapper = document.querySelector('.image-wrapper');
+        
+        console.log('Hero photo found:', heroPhoto);
+        console.log('Image wrapper found:', imageWrapper);
         
         function triggerFlip() {
-            heroPhoto.classList.remove('shake-flip');
-            void heroPhoto.offsetWidth; // Force reflow
-            heroPhoto.classList.add('shake-flip');
-            
+            console.log('FLIP TRIGGERED!');
+            heroPhoto.style.animation = 'none';
             setTimeout(() => {
-                heroPhoto.classList.remove('shake-flip');
-            }, 1500);
+                heroPhoto.style.animation = 'flipCoin 1.5s ease-in-out';
+            }, 10);
         }
 
-        if (heroPhoto) {
-            // Method 1: DeviceMotion (Accelerometer)
-            let lastTime = Date.now();
-            let lastX = 0, lastY = 0, lastZ = 0;
-            let isShaking = false;
-
-            window.addEventListener('devicemotion', (event) => {
-                const current = event.accelerationIncludingGravity;
-                const currentTime = Date.now();
-                
-                if ((currentTime - lastTime) > 100) { // Check every 100ms
-                    const deltaX = Math.abs(current.x - lastX);
-                    const deltaY = Math.abs(current.y - lastY);
-                    const deltaZ = Math.abs(current.z - lastZ);
-                    
-                    // Lower threshold for better Android detection
-                    if ((deltaX + deltaY + deltaZ) > 20) {
-                        if (!isShaking) {
-                            isShaking = true;
-                            triggerFlip();
-                            
-                            // Reset after 2 seconds
-                            setTimeout(() => {
-                                isShaking = false;
-                            }, 2000);
-                        }
-                    }
-                    
-                    lastX = current.x;
-                    lastY = current.y;
-                    lastZ = current.z;
-                    lastTime = currentTime;
-                }
-            }, true);
-
-            // Method 2: Double Tap fallback (works everywhere)
-            let lastTap = 0;
-            heroPhoto.addEventListener('click', (e) => {
-                const currentTime = Date.now();
-                const tapLength = currentTime - lastTap;
-                
-                if (tapLength < 500 && tapLength > 0) {
-                    // Double tap detected
-                    triggerFlip();
-                    e.preventDefault();
-                }
-                lastTap = currentTime;
+        // Method 1: Simple CLICK (for testing)
+        if (imageWrapper) {
+            imageWrapper.addEventListener('click', () => {
+                console.log('Image clicked!');
+                triggerFlip();
             });
-
-            // iOS 13+ permission request
-            if (typeof DeviceMotionEvent !== 'undefined' && typeof DeviceMotionEvent.requestPermission === 'function') {
-                heroPhoto.addEventListener('click', () => {
-                    DeviceMotionEvent.requestPermission()
-                        .then(permissionState => {
-                            if (permissionState === 'granted') {
-                                console.log('Motion permission granted');
-                            }
-                        })
-                        .catch(console.error);
-                }, { once: true });
-            }
+            
+            imageWrapper.style.cursor = 'pointer';
         }
+
+        // Method 2: Double Tap
+        let tapCount = 0;
+        let tapTimer = null;
+        
+        if (imageWrapper) {
+            imageWrapper.addEventListener('touchstart', (e) => {
+                tapCount++;
+                console.log('Touch detected, tap count:', tapCount);
+                
+                if (tapCount === 1) {
+                    tapTimer = setTimeout(() => {
+                        tapCount = 0;
+                    }, 300);
+                } else if (tapCount === 2) {
+                    clearTimeout(tapTimer);
+                    tapCount = 0;
+                    console.log('DOUBLE TAP!');
+                    triggerFlip();
+                }
+            });
+        }
+
+        // Method 3: Shake Detection
+        let lastX = null, lastY = null, lastZ = null;
+        let shakeCount = 0;
+        
+        window.addEventListener('devicemotion', (event) => {
+            const acc = event.accelerationIncludingGravity;
+            
+            if (lastX !== null) {
+                const deltaX = Math.abs(acc.x - lastX);
+                const deltaY = Math.abs(acc.y - lastY);
+                const deltaZ = Math.abs(acc.z - lastZ);
+                const delta = deltaX + deltaY + deltaZ;
+                
+                console.log('Motion delta:', delta);
+                
+                if (delta > 25) {
+                    shakeCount++;
+                    if (shakeCount > 2) {
+                        console.log('SHAKE DETECTED!');
+                        triggerFlip();
+                        shakeCount = 0;
+                        setTimeout(() => { shakeCount = 0; }, 1000);
+                    }
+                }
+            }
+            
+            lastX = acc.x;
+            lastY = acc.y;
+            lastZ = acc.z;
+        });
+        
+        console.log('All event listeners attached!');
     </script>
 </body>
 </html>
