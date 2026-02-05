@@ -250,6 +250,15 @@
             margin-bottom: 3rem;
         }
 
+        .shake-hint {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: var(--text-light);
+            font-style: italic;
+            opacity: 0.7;
+        }
+
         .image-wrapper {
             position: relative;
             width: 280px;
@@ -268,7 +277,11 @@
             background: transparent;
             object-fit: cover;
             object-position: center center;
-            animation: flipCoin 1.5s ease-in-out 3s;
+            animation: flipCoin 1.5s ease-in-out 1s;
+        }
+
+        .hero-photo.shake-flip {
+            animation: flipCoin 1.5s ease-in-out;
         }
 
         @keyframes flipCoin {
@@ -829,6 +842,7 @@
                 <div class="image-wrapper">
                     <img src="https://raw.githubusercontent.com/piccoloplay/repoImages/main/profilo.png" alt="Prof. Vincenzo Vespri" class="hero-photo">
                 </div>
+                <p class="shake-hint">shake to flip 😉</p>
             </div>
 
             <div class="hero-content">
@@ -1190,6 +1204,64 @@
 
             // Auto-play (optional - uncomment to enable)
             // setInterval(nextSlide, 5000);
+        }
+
+        // Shake to Flip - Accelerometer
+        const heroPhoto = document.querySelector('.hero-photo');
+        
+        if (heroPhoto && window.DeviceMotionEvent) {
+            let lastX = 0, lastY = 0, lastZ = 0;
+            let shakeThreshold = 15; // Sensitivity threshold
+            let lastShakeTime = 0;
+            let shakeCooldown = 2000; // 2 seconds cooldown between shakes
+
+            window.addEventListener('devicemotion', (event) => {
+                const acceleration = event.accelerationIncludingGravity;
+                
+                if (acceleration) {
+                    const deltaX = Math.abs(acceleration.x - lastX);
+                    const deltaY = Math.abs(acceleration.y - lastY);
+                    const deltaZ = Math.abs(acceleration.z - lastZ);
+                    
+                    // Check if shake detected
+                    if ((deltaX > shakeThreshold || deltaY > shakeThreshold || deltaZ > shakeThreshold)) {
+                        const now = Date.now();
+                        
+                        // Check cooldown
+                        if (now - lastShakeTime > shakeCooldown) {
+                            lastShakeTime = now;
+                            
+                            // Trigger flip animation
+                            heroPhoto.classList.remove('shake-flip');
+                            void heroPhoto.offsetWidth; // Force reflow
+                            heroPhoto.classList.add('shake-flip');
+                            
+                            // Remove class after animation
+                            setTimeout(() => {
+                                heroPhoto.classList.remove('shake-flip');
+                            }, 1500);
+                        }
+                    }
+                    
+                    lastX = acceleration.x;
+                    lastY = acceleration.y;
+                    lastZ = acceleration.z;
+                }
+            });
+
+            // Request permission for iOS 13+
+            if (typeof DeviceMotionEvent.requestPermission === 'function') {
+                // Add a button or trigger to request permission
+                window.addEventListener('click', () => {
+                    DeviceMotionEvent.requestPermission()
+                        .then(permissionState => {
+                            if (permissionState === 'granted') {
+                                console.log('Accelerometer permission granted');
+                            }
+                        })
+                        .catch(console.error);
+                }, { once: true });
+            }
         }
     </script>
 </body>
