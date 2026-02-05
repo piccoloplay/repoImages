@@ -856,7 +856,7 @@
                 <div class="contact-info">
                     <div class="contact-item">
                         <strong>Email:</strong>
-                        <a href="mailto:vincenzo.vespri@unifi.it">vincenzo.vespri@unifi.it</a>
+                        <a href="/cdn-cgi/l/email-protection#ef9986818c8a819580c1998a9c9f9d86af9a81868986c1869b"><span class="__cf_email__" data-cfemail="097f60676a6c677366277f6c7a797b60497c67606f6027607d">[email&#160;protected]</span></a>
                     </div>
                     <div class="contact-item">
                         <strong>Tel:</strong>
@@ -1017,13 +1017,13 @@
             <div class="footer-links">
                 <a href="https://www.unifi.it/" target="_blank">UniFi</a>
                 <a href="https://www.dimai.unifi.it/" target="_blank">DiMaI</a>
-                <a href="mailto:vincenzo.vespri@unifi.it">Email</a>
+                <a href="/cdn-cgi/l/email-protection#02746b6c61676c786d2c74677172706b42776c6b646b2c6b76">Email</a>
                 <a href="vespri-website-en.html">English Version</a>
             </div>
         </div>
     </footer>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // Mobile Navigation Toggle
         const mobileToggle = document.getElementById('mobileToggle');
         const navLinks = document.getElementById('navLinks');
@@ -1206,9 +1206,14 @@
             // setInterval(nextSlide, 5000);
         }
 
-        // Shake to Flip - Ultra Simplified for Testing
+        // Image Swap on Shake/Tap - Toggle between normal and samurai
         const heroPhoto = document.querySelector('.hero-photo');
         const imageWrapper = document.querySelector('.image-wrapper');
+        
+        const normalImage = 'https://raw.githubusercontent.com/piccoloplay/repoImages/main/profilo.png';
+        const samuraiImage = 'https://raw.githubusercontent.com/piccoloplay/repoImages/main/samurai.png';
+        let isSamurai = false;
+        let isAnimating = false;
         
         console.log('Hero photo found:', heroPhoto);
         console.log('Image wrapper found:', imageWrapper);
@@ -1220,40 +1225,51 @@
                 heroPhoto.style.animation = 'flipCoin 1.5s ease-in-out';
             }, 10);
         }
+        
+        function toggleImage() {
+            if (isAnimating) return;
+            isAnimating = true;
+            console.log('TOGGLE IMAGE!');
+            
+            triggerFlip();
+            
+            setTimeout(() => {
+                if (isSamurai) {
+                    heroPhoto.src = normalImage;
+                    isSamurai = false;
+                    console.log('Switched to normal');
+                } else {
+                    heroPhoto.src = samuraiImage;
+                    isSamurai = true;
+                    console.log('Switched to samurai');
+                }
+            }, 750);
+            
+            setTimeout(() => { isAnimating = false; }, 1600);
+        }
 
-        // Method 1: Simple CLICK (for testing)
+        // Tap/Click - usa touchend per evitare doppio fire con click
+        let touchHandled = false;
+        
         if (imageWrapper) {
-            imageWrapper.addEventListener('click', () => {
+            imageWrapper.addEventListener('touchend', (e) => {
+                e.preventDefault();
+                touchHandled = true;
+                console.log('Touch tap!');
+                toggleImage();
+                setTimeout(() => { touchHandled = false; }, 300);
+            });
+            
+            imageWrapper.addEventListener('click', (e) => {
+                if (touchHandled) return; // Ignora click se già gestito da touch
                 console.log('Image clicked!');
-                triggerFlip();
+                toggleImage();
             });
             
             imageWrapper.style.cursor = 'pointer';
         }
 
-        // Method 2: Double Tap
-        let tapCount = 0;
-        let tapTimer = null;
-        
-        if (imageWrapper) {
-            imageWrapper.addEventListener('touchstart', (e) => {
-                tapCount++;
-                console.log('Touch detected, tap count:', tapCount);
-                
-                if (tapCount === 1) {
-                    tapTimer = setTimeout(() => {
-                        tapCount = 0;
-                    }, 300);
-                } else if (tapCount === 2) {
-                    clearTimeout(tapTimer);
-                    tapCount = 0;
-                    console.log('DOUBLE TAP!');
-                    triggerFlip();
-                }
-            });
-        }
-
-        // Method 3: Shake Detection
+        // Shake Detection
         let lastX = null, lastY = null, lastZ = null;
         let shakeCount = 0;
         
@@ -1265,8 +1281,6 @@
                 const deltaY = Math.abs(acc.y - lastY);
                 const deltaZ = Math.abs(acc.z - lastZ);
                 const delta = deltaX + deltaY + deltaZ;
-                
-                console.log('Motion delta:', delta);
                 
                 if (delta > 25) {
                     shakeCount++;
@@ -1284,7 +1298,7 @@
             lastZ = acc.z;
         });
         
-        console.log('All event listeners attached!');
+        console.log("All event listeners attached!");
     </script>
 </body>
 </html>
