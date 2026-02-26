@@ -15,7 +15,7 @@
             --light: #f5f1e8;
             --text: #2a2a2a;
             --text-light: #6b6b6b;
-            --card-bg: #ffffff;
+            --card-bg: rgba(255, 255, 255, 0.97);
         }
 
         * {
@@ -32,20 +32,15 @@
             overflow-x: hidden;
         }
 
-        /* Animated background pattern */
-        body::before {
-            content: '';
+        /* Quantum canvas background */
+        #quantum-bg {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: 
-                linear-gradient(90deg, transparent 79px, rgba(42, 42, 42, 0.02) 79px),
-                linear-gradient(transparent 79px, rgba(42, 42, 42, 0.02) 79px);
-            background-size: 80px 80px;
             z-index: -1;
-            opacity: 0.5;
+            pointer-events: none;
         }
 
         /* Navigation */
@@ -301,6 +296,28 @@
             padding: 5rem 5%;
             max-width: 1400px;
             margin: 0 auto;
+        }
+
+        /* Frosted glass panel for content sections */
+        #teaching, #media, #gallery {
+            background: rgba(245, 241, 232, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 24px;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255,255,255,0.5);
+            box-shadow: 0 4px 24px rgba(26,35,50,0.06);
+        }
+
+        /* Frosted panel for hero text */
+        .hero-content {
+            background: rgba(245, 241, 232, 0.88) !important;
+            backdrop-filter: blur(14px) !important;
+            -webkit-backdrop-filter: blur(14px) !important;
+            border-radius: 20px;
+            padding: 2.5rem 3rem !important;
+            border: 1px solid rgba(255,255,255,0.6);
+            box-shadow: 0 8px 32px rgba(26,35,50,0.08);
         }
 
         .section-title {
@@ -886,13 +903,14 @@
     </style>
 </head>
 <body>
+    <canvas id="quantum-bg"></canvas>
+
     <!-- Navigation -->
     <nav id="navbar">
         <div class="nav-container">
             <a href="#" class="logo">Vincenzo Vespri</a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#home">Home</a></li>
-                <li><a href="#avvisi">Avvisi</a></li>
                 <li><a href="#teaching">Insegnamenti</a></li>
                 <li><a href="#media">Pubblicazioni & Media</a></li>
                 <li><a href="#gallery">Galleria</a></li>
@@ -946,24 +964,8 @@
 
                 <div class="office-hours">
                     <h3>Orario di ricevimento</h3>
-                    <p>Lunedì e Martedì dalle 13.30 alle 15.30</p>
+                    <p>Su appuntamento</p>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Avvisi Section -->
-    <section id="avvisi">
-        <h2 class="section-title">Avvisi</h2>
-
-        <div class="avvisi-list fade-in">
-            <div class="avviso-item">
-                <h3 class="avviso-title">Inizio lezioni registri distribuiti</h3>
-                <p class="avviso-text">Inizio lunedì 2 marzo</p>
-            </div>
-            <div class="avviso-item">
-                <h3 class="avviso-title">Inizio corso modulo di analisi matematica</h3>
-                <p class="avviso-text">Il corso inizierà il 2 marzo</p>
             </div>
         </div>
     </section>
@@ -1056,7 +1058,7 @@
         </div>
 
         <p style="margin-top: 2rem; color: var(--text-light); text-align: center;">
-            <em>Scorri le immagini con le frecce o con lo swipe su mobile. Sostituisci i placeholder con URL di immagini reali.</em>
+            <em>Scorri le immagini con le frecce o con lo swipe su mobile.</em>
         </p>
     </section>
 
@@ -1351,7 +1353,138 @@
             lastZ = acc.z;
         });
         
-        console.log("All event listeners attached!");
+        // Network Nodes Background
+        const canvas = document.getElementById('quantum-bg');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', () => {
+            resizeCanvas();
+            initNodes();
+        });
+
+        const MAX_DIST = 160;
+        const NODE_COUNT = 60;
+        let nodes = [];
+        let mouse = { x: null, y: null };
+
+        window.addEventListener('mousemove', e => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        });
+        window.addEventListener('mouseleave', () => {
+            mouse.x = null;
+            mouse.y = null;
+        });
+
+        class Node {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = (Math.random() - 0.5) * 0.5;
+                this.radius = Math.random() * 2.5 + 1.5;
+                this.pulse = Math.random() * Math.PI * 2;
+                this.pulseSpeed = Math.random() * 0.02 + 0.01;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                this.pulse += this.pulseSpeed;
+
+                if (this.x < 0 || this.x > canvas.width)  this.vx *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+
+                // Mouse repulsion
+                if (mouse.x !== null) {
+                    const dx = this.x - mouse.x;
+                    const dy = this.y - mouse.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 100) {
+                        this.x += (dx / dist) * 1.5;
+                        this.y += (dy / dist) * 1.5;
+                    }
+                }
+            }
+
+            draw() {
+                const glow = 0.5 + 0.5 * Math.sin(this.pulse);
+                const alpha = 0.4 + 0.4 * glow;
+                const r = this.radius + glow * 1.5;
+
+                // Glow
+                const grad = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, r * 4);
+                grad.addColorStop(0, `rgba(201,159,104,${alpha * 0.8})`);
+                grad.addColorStop(1, `rgba(201,159,104,0)`);
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, r * 4, 0, Math.PI * 2);
+                ctx.fillStyle = grad;
+                ctx.fill();
+
+                // Core
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, r, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(201,159,104,${alpha})`;
+                ctx.fill();
+            }
+        }
+
+        function initNodes() {
+            nodes = Array.from({ length: NODE_COUNT }, () => new Node());
+        }
+
+        function drawConnections() {
+            for (let i = 0; i < nodes.length; i++) {
+                for (let j = i + 1; j < nodes.length; j++) {
+                    const dx = nodes[i].x - nodes[j].x;
+                    const dy = nodes[i].y - nodes[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < MAX_DIST) {
+                        const alpha = (1 - dist / MAX_DIST) * 0.25;
+                        ctx.beginPath();
+                        ctx.moveTo(nodes[i].x, nodes[i].y);
+                        ctx.lineTo(nodes[j].x, nodes[j].y);
+                        ctx.strokeStyle = `rgba(45,66,99,${alpha})`;
+                        ctx.lineWidth = 1;
+                        ctx.stroke();
+                    }
+                }
+
+                // Connect to mouse
+                if (mouse.x !== null) {
+                    const dx = nodes[i].x - mouse.x;
+                    const dy = nodes[i].y - mouse.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < MAX_DIST * 1.5) {
+                        const alpha = (1 - dist / (MAX_DIST * 1.5)) * 0.5;
+                        ctx.beginPath();
+                        ctx.moveTo(nodes[i].x, nodes[i].y);
+                        ctx.lineTo(mouse.x, mouse.y);
+                        ctx.strokeStyle = `rgba(201,159,104,${alpha})`;
+                        ctx.lineWidth = 1;
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawConnections();
+            nodes.forEach(n => { n.update(); n.draw(); });
+            requestAnimationFrame(animate);
+        }
+
+        initNodes();
+        animate();
+
+
     </script>
 </body>
 </html>
