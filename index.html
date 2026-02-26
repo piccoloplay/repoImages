@@ -706,6 +706,38 @@
         }
 
         /* Responsive */
+        /* Avvisi */
+        .avvisi-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            margin-top: 2rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .avviso-item {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .avviso-item:last-child {
+            border-bottom: none;
+        }
+
+        .avviso-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            color: var(--secondary);
+            margin-bottom: 0.4rem;
+        }
+
+        .avviso-text {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
         /* Teaching List */
         .teaching-list {
             list-style: disc;
@@ -860,6 +892,7 @@
             <a href="#" class="logo">Vincenzo Vespri</a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#home">Home</a></li>
+                <li><a href="#avvisi">Avvisi</a></li>
                 <li><a href="#teaching">Insegnamenti</a></li>
                 <li><a href="#media">Pubblicazioni & Media</a></li>
                 <li><a href="#gallery">Galleria</a></li>
@@ -885,28 +918,29 @@
 
             <div class="hero-content">
                 <h1 class="hero-title">Vincenzo Vespri</h1>
-                <p class="hero-subtitle">Professore di Matematica</p>
+                <p class="hero-subtitle">Professore Ordinario</p>
                 <p class="hero-affiliation">
-                    <a href="https://www.dimai.unifi.it/" target="_blank">DiMaI - Dipartimento di Matematica e Informatica "Ulisse Dini"</a><br>
+                    SSD: MATH-03/A - Analisi matematica<br>
+                    <a href="https://www.dimai.unifi.it/" target="_blank">Dipartimento di Matematica e Informatica 'Ulisse Dini'</a><br>
                     Università degli Studi di Firenze
                 </p>
                 
                 <div class="contact-info">
                     <div class="contact-item">
                         <strong>Email:</strong>
-                        <a href="/cdn-cgi/l/email-protection#ef9986818c8a819580c1998a9c9f9d86af9a81868986c1869b"><span class="__cf_email__" data-cfemail="097f60676a6c677366277f6c7a797b60497c67606f6027607d">[email&#160;protected]</span></a>
+                        <a href="mailto:vincenzo.vespri@unifi.it">vincenzo.vespri@unifi.it</a>
                     </div>
                     <div class="contact-item">
                         <strong>Tel:</strong>
-                        <span>+39 055 2751405</span>
-                    </div>
-                    <div class="contact-item">
-                        <strong>Fax:</strong>
-                        <span>+39 055 2751413</span>
+                        <span>055 2751405</span>
                     </div>
                     <div class="contact-item">
                         <strong>Indirizzo:</strong>
-                        <span>Viale Morgagni, 67/a I-50134 Firenze (Italia)</span>
+                        <span>Viale Morgagni 67/a, ufficio n 5</span>
+                    </div>
+                    <div class="contact-item">
+                        <strong>Pagina UniFi:</strong>
+                        <a href="https://www.unifi.it/p-doc2-0-0-A-3f2a3d30342f2d.html" target="_blank">Scheda istituzionale</a>
                     </div>
                 </div>
 
@@ -914,6 +948,22 @@
                     <h3>Orario di ricevimento</h3>
                     <p>Lunedì e Martedì dalle 13.30 alle 15.30</p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Avvisi Section -->
+    <section id="avvisi">
+        <h2 class="section-title">Avvisi</h2>
+
+        <div class="avvisi-list fade-in">
+            <div class="avviso-item">
+                <h3 class="avviso-title">Inizio lezioni registri distribuiti</h3>
+                <p class="avviso-text">Inizio lunedì 2 marzo</p>
+            </div>
+            <div class="avviso-item">
+                <h3 class="avviso-title">Inizio corso modulo di analisi matematica</h3>
+                <p class="avviso-text">Il corso inizierà il 2 marzo</p>
             </div>
         </div>
     </section>
@@ -1019,7 +1069,7 @@
             <div class="footer-links">
                 <a href="https://www.unifi.it/" target="_blank">UniFi</a>
                 <a href="https://www.dimai.unifi.it/" target="_blank">DiMaI</a>
-                <a href="/cdn-cgi/l/email-protection#02746b6c61676c786d2c74677172706b42776c6b646b2c6b76">Email</a>
+                <a href="mailto:vincenzo.vespri@unifi.it">Email</a>
                 <a href="vespri-website-en.html">English Version</a>
             </div>
         </div>
