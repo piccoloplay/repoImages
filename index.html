@@ -706,6 +706,45 @@
         }
 
         /* Responsive */
+        /* Teaching List */
+        .teaching-list {
+            list-style: disc;
+            padding-left: 1.5rem;
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+        }
+
+        .teaching-item {
+            color: var(--text);
+        }
+
+        .teaching-code-title {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text);
+            margin-bottom: 0.2rem;
+        }
+
+        .teaching-module {
+            font-style: italic;
+            font-size: 0.95rem;
+            color: var(--text-light);
+            margin-bottom: 0.3rem;
+        }
+
+        .teaching-degree {
+            color: #1a6bc4;
+            text-decoration: underline;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .teaching-degree:hover {
+            color: var(--accent);
+        }
+
         @media (max-width: 968px) {
             .nav-links {
                 position: fixed;
@@ -821,10 +860,9 @@
             <a href="#" class="logo">Vincenzo Vespri</a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#home">Home</a></li>
+                <li><a href="#teaching">Insegnamenti</a></li>
                 <li><a href="#media">Pubblicazioni & Media</a></li>
                 <li><a href="#gallery">Galleria</a></li>
-                <li><a href="#teaching">Insegnamento</a></li>
-                <li><a href="#cv">Curriculum</a></li>
                 <li><a href="vespri-website-en.html" class="english-link">English Version</a></li>
             </ul>
             <div class="mobile-toggle" id="mobileToggle">
@@ -878,6 +916,28 @@
                 </div>
             </div>
         </div>
+    </section>
+
+    <!-- Teaching Section -->
+    <section id="teaching">
+        <h2 class="section-title">Insegnamenti</h2>
+
+        <ul class="teaching-list fade-in">
+            <li class="teaching-item">
+                <div class="teaching-code-title">[B035028] Analisi matematica</div>
+                <div class="teaching-module">Modulo di [B035027] Istituzioni di matematiche (C.I.)</div>
+                <a href="https://www.unifi.it/p-cor2-2025-I500-A000-ita-B035028.html" target="_blank" class="teaching-degree">Laurea: SCIENZE DELL'ARCHITETTURA Percorso: GENERICO (coorte: 2025)</a>
+            </li>
+            <li class="teaching-item">
+                <div class="teaching-code-title">[B019518] ANALISI MATEMATICA II</div>
+                <div class="teaching-module">Modulo di [B024393] ANALISI MATEMATICA I/ANALISI MATEMATICA II C.I</div>
+                <a href="https://www.unifi.it/p-cor2-2025-B153-A000-ita-B019518.html" target="_blank" class="teaching-degree">Laurea: INGEGNERIA BIOMEDICA Percorso: GENERICO (coorte: 2025)</a>
+            </li>
+            <li class="teaching-item">
+                <div class="teaching-code-title">[B032482] MODELLI MATEMATICI PER I REGISTRI DISTRIBUITI: TEORIA E CASI D'USO</div>
+                <a href="https://www.unifi.it/p-cor2-2024-B261-A000-ita-B032482.html" target="_blank" class="teaching-degree">Laurea Magistrale: DATA SCIENCE, CALCOLO SCIENTIFICO &amp; INTELLIGENZA ARTIFICIALE Percorso: GENERICO (coorte: 2024)</a>
+            </li>
+        </ul>
     </section>
 
     <!-- Media Section -->
@@ -950,65 +1010,7 @@
         </p>
     </section>
 
-    <!-- Teaching Section -->
-    <section id="teaching">
-        <h2 class="section-title">Insegnamento</h2>
-        
-        <div class="courses-grid fade-in">
-            <div class="course-card">
-                <div class="course-label">[Informatica]</div>
-                <h3 class="course-title">Analisi II</h3>
-                <p class="course-description">Corso avanzato di analisi matematica per studenti di informatica.</p>
-                <a href="#" class="course-link">
-                    Corso online →
-                </a>
-            </div>
 
-            <div class="course-card">
-                <div class="course-label">[Statistica]</div>
-                <h3 class="course-title">Probabilità e Matematica per la Statistica</h3>
-                <p class="course-description">Fondamenti di teoria della probabilità e applicazioni statistiche.</p>
-                <a href="#" class="course-link">
-                    Corso online →
-                </a>
-            </div>
-
-            <div class="course-card">
-                <div class="course-label">[Matematica]</div>
-                <h3 class="course-title">Processi Stocastici</h3>
-                <p class="course-description">Studio approfondito dei processi stocastici e delle loro applicazioni.</p>
-                <a href="#" class="course-link">
-                    Corso online →
-                </a>
-            </div>
-
-            <div class="course-card">
-                <div class="course-label">[Finanza Applicata]</div>
-                <h3 class="course-title">Corso per l'università dell'età libera</h3>
-                <p class="course-description">Matematica finanziaria applicata, corsi A.A. 2010-2011 e precedenti.</p>
-                <a href="#" class="course-link">
-                    Materiali corso →
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- CV Section -->
-    <section id="cv">
-        <h2 class="section-title">Curriculum Vitae</h2>
-        
-        <div class="cv-container fade-in">
-            <h3 class="cv-title">Scarica il mio Curriculum</h3>
-            <div class="cv-links">
-                <a href="#" class="cv-link">
-                    Curriculum Vitae (IT)
-                </a>
-                <a href="#" class="cv-link">
-                    Curriculum Vitae (EN)
-                </a>
-            </div>
-        </div>
-    </section>
 
     <!-- Footer -->
     <footer>
