@@ -81,6 +81,7 @@
             display: flex;
             gap: 2.5rem;
             list-style: none;
+            align-items: center;
         }
 
         .nav-links a {
@@ -106,21 +107,38 @@
             width: 100%;
         }
 
-        .english-link {
+        /* Language Switcher */
+        .lang-switcher {
+            display: flex;
+            gap: 0.4rem;
+            align-items: center;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: 1.5px solid var(--accent);
+            color: var(--primary);
+            padding: 0.3rem 0.65rem;
+            border-radius: 5px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            font-family: 'DM Sans', sans-serif;
+            letter-spacing: 0.03em;
+        }
+
+        .lang-btn:hover {
+            background: var(--accent);
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        .lang-btn.active {
             background: linear-gradient(135deg, var(--accent), #d4af7a);
-            padding: 0.5rem 1rem !important;
-            border-radius: 6px;
-            color: white !important;
-            transition: all 0.3s ease;
-        }
-
-        .english-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(201, 159, 104, 0.3);
-        }
-
-        .english-link::after {
-            display: none;
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 2px 8px rgba(201, 159, 104, 0.35);
         }
 
         .mobile-toggle {
@@ -280,15 +298,9 @@
         }
 
         @keyframes flipCoin {
-            0% {
-                transform: rotateY(0deg);
-            }
-            50% {
-                transform: rotateY(180deg);
-            }
-            100% {
-                transform: rotateY(360deg);
-            }
+            0%   { transform: rotateY(0deg); }
+            50%  { transform: rotateY(180deg); }
+            100% { transform: rotateY(360deg); }
         }
 
         /* Section Styles */
@@ -341,77 +353,41 @@
         }
 
         /* Teaching Courses */
-        .courses-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+        .teaching-list {
+            list-style: disc;
+            padding-left: 1.5rem;
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
         }
 
-        .course-card {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 16px;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
+        .teaching-item {
+            color: var(--text);
         }
 
-        .course-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background: linear-gradient(180deg, var(--accent), var(--secondary));
-            transform: scaleY(0);
-            transition: transform 0.4s ease;
+        .teaching-code-title {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text);
+            margin-bottom: 0.2rem;
         }
 
-        .course-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
-        }
-
-        .course-card:hover::before {
-            transform: scaleY(1);
-        }
-
-        .course-label {
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: var(--accent);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 0.5rem;
-        }
-
-        .course-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.6rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .course-description {
+        .teaching-module {
+            font-style: italic;
+            font-size: 0.95rem;
             color: var(--text-light);
-            margin-bottom: 1.5rem;
+            margin-bottom: 0.3rem;
         }
 
-        .course-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--secondary);
-            text-decoration: none;
-            font-weight: 600;
-            transition: gap 0.3s ease;
+        .teaching-degree {
+            color: #1a6bc4;
+            text-decoration: underline;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
         }
 
-        .course-link:hover {
-            gap: 1rem;
+        .teaching-degree:hover {
             color: var(--accent);
         }
 
@@ -498,13 +474,8 @@
             transform: translateY(-50%) scale(0.95);
         }
 
-        .gallery-prev {
-            left: 20px;
-        }
-
-        .gallery-next {
-            right: 20px;
-        }
+        .gallery-prev { left: 20px; }
+        .gallery-next { right: 20px; }
 
         /* Dots Indicators */
         .gallery-dots {
@@ -608,50 +579,6 @@
             box-shadow: 0 5px 15px rgba(201, 159, 104, 0.4);
         }
 
-        /* CV Section */
-        .cv-container {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 4rem;
-            border-radius: 20px;
-            text-align: center;
-            margin-top: 3rem;
-        }
-
-        .cv-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .cv-links {
-            display: flex;
-            gap: 2rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .cv-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.8rem;
-            padding: 1rem 2rem;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            color: white;
-            text-decoration: none;
-            border-radius: 10px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .cv-link:hover {
-            background: rgba(255, 255, 255, 0.25);
-            transform: translateY(-3px);
-            border-color: var(--accent);
-        }
-
         /* Footer */
         footer {
             background: var(--primary);
@@ -671,127 +598,26 @@
             opacity: 0.8;
         }
 
-        .footer-links {
-            display: flex;
-            gap: 2rem;
-            justify-content: center;
-            margin-top: 1.5rem;
-        }
-
-        .footer-links a {
-            color: white;
-            text-decoration: none;
-            opacity: 0.8;
-            transition: opacity 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            opacity: 1;
-            color: var(--accent);
-        }
-
         /* Animations */
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to   { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+            from { opacity: 0; }
+            to   { opacity: 1; }
         }
 
         .fade-in {
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
         }
 
         .fade-in.visible {
             opacity: 1;
             transform: translateY(0);
-        }
-
-        /* Responsive */
-        /* Avvisi */
-        .avvisi-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-            margin-top: 2rem;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .avviso-item {
-            padding: 1.5rem 2rem;
-            border-bottom: 1px solid #eee;
-        }
-
-        .avviso-item:last-child {
-            border-bottom: none;
-        }
-
-        .avviso-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.4rem;
-            color: var(--secondary);
-            margin-bottom: 0.4rem;
-        }
-
-        .avviso-text {
-            color: var(--text-light);
-            font-size: 0.95rem;
-        }
-
-        /* Teaching List */
-        .teaching-list {
-            list-style: disc;
-            padding-left: 1.5rem;
-            margin-top: 2rem;
-            display: flex;
-            flex-direction: column;
-            gap: 1.8rem;
-        }
-
-        .teaching-item {
-            color: var(--text);
-        }
-
-        .teaching-code-title {
-            font-size: 1rem;
-            font-weight: 500;
-            color: var(--text);
-            margin-bottom: 0.2rem;
-        }
-
-        .teaching-module {
-            font-style: italic;
-            font-size: 0.95rem;
-            color: var(--text-light);
-            margin-bottom: 0.3rem;
-        }
-
-        .teaching-degree {
-            color: #1a6bc4;
-            text-decoration: underline;
-            font-size: 0.95rem;
-            transition: color 0.3s ease;
-        }
-
-        .teaching-degree:hover {
-            color: var(--accent);
         }
 
         @media (max-width: 968px) {
@@ -810,95 +636,31 @@
                 transition: left 0.3s ease;
             }
 
-            .nav-links.active {
-                left: 0;
-            }
+            .nav-links.active { left: 0; }
 
-            .mobile-toggle {
-                display: flex;
-            }
+            .mobile-toggle { display: flex; }
 
-            .mobile-toggle.active span:nth-child(1) {
-                transform: rotate(45deg) translate(8px, 8px);
-            }
+            .mobile-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(8px, 8px); }
+            .mobile-toggle.active span:nth-child(2) { opacity: 0; }
+            .mobile-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
 
-            .mobile-toggle.active span:nth-child(2) {
-                opacity: 0;
-            }
-
-            .mobile-toggle.active span:nth-child(3) {
-                transform: rotate(-45deg) translate(7px, -7px);
-            }
-
-            .hero-title {
-                font-size: 3rem;
-            }
-
-            .section-title {
-                font-size: 2.5rem;
-            }
-
-            .courses-grid,
-            .media-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .cv-links {
-                flex-direction: column;
-                align-items: center;
-            }
+            .hero-title { font-size: 3rem; }
+            .section-title { font-size: 2.5rem; }
+            .media-grid { grid-template-columns: 1fr; }
         }
 
         @media (max-width: 600px) {
-            nav {
-                padding: 1rem 5%;
-            }
-
-            .logo {
-                font-size: 1.5rem;
-            }
-
-            .hero-title {
-                font-size: 2.5rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1.1rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .gallery-nav {
-                width: 40px;
-                height: 40px;
-                font-size: 1.2rem;
-            }
-
-            .gallery-prev {
-                left: 10px;
-            }
-
-            .gallery-next {
-                right: 10px;
-            }
-
-            .gallery-overlay {
-                padding: 1.5rem;
-            }
-
-            .gallery-caption {
-                font-size: 1rem;
-            }
-
-            section {
-                padding: 3rem 5%;
-            }
-
-            .cv-container {
-                padding: 2rem;
-            }
+            nav { padding: 1rem 5%; }
+            .logo { font-size: 1.5rem; }
+            .hero-title { font-size: 2.5rem; }
+            .hero-subtitle { font-size: 1.1rem; }
+            .section-title { font-size: 2rem; }
+            .gallery-nav { width: 40px; height: 40px; font-size: 1.2rem; }
+            .gallery-prev { left: 10px; }
+            .gallery-next { right: 10px; }
+            .gallery-overlay { padding: 1.5rem; }
+            .gallery-caption { font-size: 1rem; }
+            section { padding: 3rem 5%; }
         }
     </style>
 </head>
@@ -910,11 +672,17 @@
         <div class="nav-container">
             <a href="#" class="logo">Vincenzo Vespri</a>
             <ul class="nav-links" id="navLinks">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#teaching">Insegnamenti</a></li>
-                <li><a href="#media">Pubblicazioni & Media</a></li>
-                <li><a href="#gallery">Galleria</a></li>
-                <li><a href="vespri-website-en.html" class="english-link">English Version</a></li>
+                <li><a href="#home" data-i18n="nav_home">Home</a></li>
+                <li><a href="#teaching" data-i18n="nav_teaching">Insegnamenti</a></li>
+                <li><a href="#media" data-i18n="nav_media">Pubblicazioni &amp; Media</a></li>
+                <li><a href="#gallery" data-i18n="nav_gallery">Galleria</a></li>
+                <li>
+                    <div class="lang-switcher">
+                        <button class="lang-btn active" onclick="setLang('it')">IT</button>
+                        <button class="lang-btn" onclick="setLang('en')">EN</button>
+                        <button class="lang-btn" onclick="setLang('zh')">中文</button>
+                    </div>
+                </li>
             </ul>
             <div class="mobile-toggle" id="mobileToggle">
                 <span></span>
@@ -931,40 +699,40 @@
                 <div class="image-wrapper">
                     <img src="https://raw.githubusercontent.com/piccoloplay/repoImages/main/profilo.png" alt="Prof. Vincenzo Vespri" class="hero-photo">
                 </div>
-                <p class="shake-hint" style="color: white;">🥚shake to flip🥚 </p>
+                <p class="shake-hint" style="color: white;" data-i18n="shake_hint">🥚 shake to flip 🥚</p>
             </div>
 
             <div class="hero-content">
                 <h1 class="hero-title">Vincenzo Vespri</h1>
-                <p class="hero-subtitle">Professore Ordinario</p>
+                <p class="hero-subtitle" data-i18n="hero_subtitle">Professore Ordinario</p>
                 <p class="hero-affiliation">
-                    SSD: MATH-03/A - Analisi matematica<br>
-                    <a href="https://www.dimai.unifi.it/" target="_blank">Dipartimento di Matematica e Informatica 'Ulisse Dini'</a><br>
-                    Università degli Studi di Firenze
+                    <span data-i18n="hero_ssd">SSD: MATH-03/A - Analisi matematica</span><br>
+                    <a href="https://www.dimai.unifi.it/" target="_blank" data-i18n="hero_dept">Dipartimento di Matematica e Informatica 'Ulisse Dini'</a><br>
+                    <span data-i18n="hero_univ">Università degli Studi di Firenze</span>
                 </p>
-                
+
                 <div class="contact-info">
                     <div class="contact-item">
-                        <strong>Email:</strong>
+                        <strong data-i18n="contact_email">Email:</strong>
                         <a href="mailto:vincenzo.vespri@unifi.it">vincenzo.vespri@unifi.it</a>
                     </div>
                     <div class="contact-item">
-                        <strong>Tel:</strong>
+                        <strong data-i18n="contact_tel">Tel:</strong>
                         <span>055 2751405</span>
                     </div>
                     <div class="contact-item">
-                        <strong>Indirizzo:</strong>
-                        <span>Viale Morgagni 67/a, ufficio n 5</span>
+                        <strong data-i18n="contact_address_label">Indirizzo:</strong>
+                        <span data-i18n="contact_address">Viale Morgagni 67/a, ufficio n 5</span>
                     </div>
                     <div class="contact-item">
-                        <strong>Pagina UniFi:</strong>
-                        <a href="https://www.unifi.it/p-doc2-0-0-A-3f2a3d30342f2d.html" target="_blank">Scheda istituzionale</a>
+                        <strong data-i18n="contact_page_label">Pagina UniFi:</strong>
+                        <a href="https://www.unifi.it/p-doc2-0-0-A-3f2a3d30342f2d.html" target="_blank" data-i18n="contact_page_link">Scheda istituzionale</a>
                     </div>
                 </div>
 
                 <div class="office-hours">
-                    <h3>Orario di ricevimento</h3>
-                    <p>Su appuntamento</p>
+                    <h3 data-i18n="office_hours_title">Orario di ricevimento</h3>
+                    <p data-i18n="office_hours_value">Su appuntamento</p>
                 </div>
             </div>
         </div>
@@ -972,41 +740,39 @@
 
     <!-- Teaching Section -->
     <section id="teaching">
-        <h2 class="section-title">Insegnamenti</h2>
+        <h2 class="section-title" data-i18n="nav_teaching">Insegnamenti</h2>
 
         <ul class="teaching-list fade-in">
             <li class="teaching-item">
-                <div class="teaching-code-title">[B035028] Analisi matematica</div>
-                <div class="teaching-module">Modulo di [B035027] Istituzioni di matematiche (C.I.)</div>
-                <a href="https://unifi.coursecatalogue.cineca.it/corsi/2025/4069/insegnamenti/2025/B035028/2025/60139?coorte=2025" target="_blank" class="teaching-degree">Laurea: SCIENZE DELL'ARCHITETTURA Percorso: GENERICO (coorte: 2025)</a>
+                <div class="teaching-code-title">[B035028] <span data-i18n="course1_title">Analisi matematica</span></div>
+                <div class="teaching-module" data-i18n="course1_module">Modulo di [B035027] Istituzioni di matematiche (C.I.)</div>
+                <a href="https://unifi.coursecatalogue.cineca.it/corsi/2025/4069/insegnamenti/2025/B035028/2025/60139?coorte=2025" target="_blank" class="teaching-degree" data-i18n="course1_degree">Laurea: SCIENZE DELL'ARCHITETTURA Percorso: GENERICO (coorte: 2025)</a>
             </li>
             <li class="teaching-item">
-                <div class="teaching-code-title">[B019518] ANALISI MATEMATICA II</div>
-                <div class="teaching-module">Modulo di [B024393] ANALISI MATEMATICA I/ANALISI MATEMATICA II C.I</div>
-                <a href="https://unifi.coursecatalogue.cineca.it/corsi/2025/4279/insegnamenti/2025/B019518/2025/52973?coorte=2025" target="_blank" class="teaching-degree">Laurea: INGEGNERIA BIOMEDICA Percorso: GENERICO (coorte: 2025)</a>
+                <div class="teaching-code-title">[B019518] <span data-i18n="course2_title">ANALISI MATEMATICA II</span></div>
+                <div class="teaching-module" data-i18n="course2_module">Modulo di [B024393] ANALISI MATEMATICA I/ANALISI MATEMATICA II C.I</div>
+                <a href="https://unifi.coursecatalogue.cineca.it/corsi/2025/4279/insegnamenti/2025/B019518/2025/52973?coorte=2025" target="_blank" class="teaching-degree" data-i18n="course2_degree">Laurea: INGEGNERIA BIOMEDICA Percorso: GENERICO (coorte: 2025)</a>
             </li>
             <li class="teaching-item">
-                <div class="teaching-code-title">[B032482] MODELLI MATEMATICI PER I REGISTRI DISTRIBUITI: TEORIA E CASI D'USO</div>
-                <a href="https://unifi.coursecatalogue.cineca.it/corsi/2024/2642/insegnamenti/2025/41679_B257-23-24_102877_707499/2023/41679?coorte=2024" target="_blank" class="teaching-degree">Laurea Magistrale: DATA SCIENCE, CALCOLO SCIENTIFICO &amp; INTELLIGENZA ARTIFICIALE Percorso: GENERICO (coorte: 2024)</a>
+                <div class="teaching-code-title">[B032482] <span data-i18n="course3_title">MODELLI MATEMATICI PER I REGISTRI DISTRIBUITI: TEORIA E CASI D'USO</span></div>
+                <a href="https://unifi.coursecatalogue.cineca.it/corsi/2024/2642/insegnamenti/2025/41679_B257-23-24_102877_707499/2023/41679?coorte=2024" target="_blank" class="teaching-degree" data-i18n="course3_degree">Laurea Magistrale: DATA SCIENCE, CALCOLO SCIENTIFICO &amp; INTELLIGENZA ARTIFICIALE Percorso: GENERICO (coorte: 2024)</a>
             </li>
         </ul>
     </section>
 
     <!-- Media Section -->
     <section id="media">
-        <h2 class="section-title">Pubblicazioni & Media</h2>
-        
+        <h2 class="section-title" data-i18n="nav_media">Pubblicazioni &amp; Media</h2>
+
         <div class="media-grid fade-in">
             <!-- Book -->
             <div class="media-card">
                 <img src="https://raw.githubusercontent.com/piccoloplay/repoImages/main/4.jpg" alt="I misteri della matematica" class="media-image">
                 <div class="media-content">
-                    <div class="media-type">Libro</div>
-                    <h3 class="media-title">I misteri della matematica</h3>
-                    <p class="media-description">Storia e significato magico dei numeri da zero a infinito. Un viaggio affascinante attraverso i concetti fondamentali della matematica.</p>
-                    <a href="https://www.amazon.it/misteri-matematica-Storia-significato-magico/dp/8836163459/ref=sr_1_4?dib=eyJ2IjoiMSJ9.K3fVXhb86OXiXU51hZJO3f3fpCiU6DjC06HAhyziLscB3DKfVvdb3CllYjIjQ-zBD1y3xFuSFTLXZVdECYVnxafzmTQW-mHUKMBWgdUukI0._TJUopR7MsjyDuB1a8GZzHLDjeiLoLU3a6a4OPKU4lM&dib_tag=se&qid=1770069541&refinements=p_27%3AVincenzo+Vespri&s=books&sr=1-4" target="_blank" class="media-link">
-                        Acquista su Amazon →
-                    </a>
+                    <div class="media-type" data-i18n="media1_type">Libro</div>
+                    <h3 class="media-title" data-i18n="media1_title">I misteri della matematica</h3>
+                    <p class="media-description" data-i18n="media1_desc">Storia e significato magico dei numeri da zero a infinito. Un viaggio affascinante attraverso i concetti fondamentali della matematica.</p>
+                    <a href="https://www.amazon.it/misteri-matematica-Storia-significato-magico/dp/8836163459/" target="_blank" class="media-link" data-i18n="media1_link">Acquista su Amazon →</a>
                 </div>
             </div>
 
@@ -1014,12 +780,10 @@
             <div class="media-card">
                 <img src="https://raw.githubusercontent.com/piccoloplay/repoImages/main/5.png" alt="Video YouTube" class="media-image">
                 <div class="media-content">
-                    <div class="media-type">Video</div>
-                    <h3 class="media-title">Il mio avatar che discute di amore della scienza</h3>
-                    <p class="media-description">Una conversazione appassionata sull'importanza della scienza e della ricerca matematica nel mondo moderno.</p>
-                    <a href="https://youtu.be/cO_UDNOxg3A" target="_blank" class="media-link">
-                        Guarda su YouTube →
-                    </a>
+                    <div class="media-type" data-i18n="media2_type">Video</div>
+                    <h3 class="media-title" data-i18n="media2_title">Il mio avatar che discute di amore della scienza</h3>
+                    <p class="media-description" data-i18n="media2_desc">Una conversazione appassionata sull'importanza della scienza e della ricerca matematica nel mondo moderno.</p>
+                    <a href="https://youtu.be/cO_UDNOxg3A" target="_blank" class="media-link" data-i18n="media2_link">Guarda su YouTube →</a>
                 </div>
             </div>
 
@@ -1027,12 +791,10 @@
             <div class="media-card">
                 <img src="https://raw.githubusercontent.com/piccoloplay/repoImages/main/6.png" alt="Produzione scientifica" class="media-image">
                 <div class="media-content">
-                    <div class="media-type">Pubblicazioni</div>
-                    <h3 class="media-title">Produzione scientifica</h3>
-                    <p class="media-description">Elenco completo delle pubblicazioni scientifiche sul portale istituzionale dell'Università degli Studi di Firenze.</p>
-                    <a href="https://cercachi.unifi.it/p-doc2-0-0-A-3f2a3d30342f2d.html" target="_blank" class="media-link">
-                        Vedi su UniFi →
-                    </a>
+                    <div class="media-type" data-i18n="media3_type">Pubblicazioni</div>
+                    <h3 class="media-title" data-i18n="media3_title">Produzione scientifica</h3>
+                    <p class="media-description" data-i18n="media3_desc">Elenco completo delle pubblicazioni scientifiche sul portale istituzionale dell'Università degli Studi di Firenze.</p>
+                    <a href="https://cercachi.unifi.it/p-doc2-0-0-A-3f2a3d30342f2d.html" target="_blank" class="media-link" data-i18n="media3_link">Vedi su UniFi →</a>
                 </div>
             </div>
         </div>
@@ -1040,8 +802,8 @@
 
     <!-- Gallery Section -->
     <section id="gallery">
-        <h2 class="section-title">Galleria</h2>
-        
+        <h2 class="section-title" data-i18n="nav_gallery">Galleria</h2>
+
         <div class="gallery-container fade-in">
             <div class="gallery-slider" id="gallerySlider">
                 <div class="gallery-slide">
@@ -1055,32 +817,183 @@
                 </div>
             </div>
 
-            <button class="gallery-nav gallery-prev" id="galleryPrev" aria-label="Immagine precedente">‹</button>
-            <button class="gallery-nav gallery-next" id="galleryNext" aria-label="Immagine successiva">›</button>
+            <button class="gallery-nav gallery-prev" id="galleryPrev" aria-label="prev">&#8249;</button>
+            <button class="gallery-nav gallery-next" id="galleryNext" aria-label="next">&#8250;</button>
 
             <div class="gallery-dots" id="galleryDots"></div>
         </div>
 
         <p style="margin-top: 2rem; color: var(--text-light); text-align: center;">
-            <em>Scorri le immagini con le frecce o con lo swipe su mobile.</em>
+            <em data-i18n="gallery_hint">Scorri le immagini con le frecce o con lo swipe su mobile.</em>
         </p>
     </section>
-
-
 
     <!-- Footer -->
     <footer>
         <div class="footer-container">
-            <p class="footer-text">© 2026 Prof. Vincenzo Vespri - Università degli Studi di Firenze</p>
-            <div class="footer-links">
-                <a href="vespri-website-en.html">English Version</a>
-                <a href="vespri-website-zh.html">Chinese Version</a>
-            </div>
+            <p class="footer-text" data-i18n="footer_text">© 2026 Prof. Vincenzo Vespri - Università degli Studi di Firenze</p>
         </div>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script>
+        // =============================================
+        // i18n - Dizionario traduzioni
+        // =============================================
+        const translations = {
+            it: {
+                nav_home:            'Home',
+                nav_teaching:        'Insegnamenti',
+                nav_media:           'Pubblicazioni & Media',
+                nav_gallery:         'Galleria',
+                shake_hint:          '🥚 shake to flip 🥚',
+                hero_subtitle:       'Professore Ordinario',
+                hero_ssd:            'SSD: MATH-03/A - Analisi matematica',
+                hero_dept:           "Dipartimento di Matematica e Informatica 'Ulisse Dini'",
+                hero_univ:           'Università degli Studi di Firenze',
+                contact_email:       'Email:',
+                contact_tel:         'Tel:',
+                contact_address_label: 'Indirizzo:',
+                contact_address:     'Viale Morgagni 67/a, ufficio n 5',
+                contact_page_label:  'Pagina UniFi:',
+                contact_page_link:   'Scheda istituzionale',
+                office_hours_title:  'Orario di ricevimento',
+                office_hours_value:  'Su appuntamento',
+                course1_title:       'Analisi matematica',
+                course1_module:      'Modulo di [B035027] Istituzioni di matematiche (C.I.)',
+                course1_degree:      "Laurea: SCIENZE DELL'ARCHITETTURA Percorso: GENERICO (coorte: 2025)",
+                course2_title:       'ANALISI MATEMATICA II',
+                course2_module:      'Modulo di [B024393] ANALISI MATEMATICA I/ANALISI MATEMATICA II C.I',
+                course2_degree:      'Laurea: INGEGNERIA BIOMEDICA Percorso: GENERICO (coorte: 2025)',
+                course3_title:       'MODELLI MATEMATICI PER I REGISTRI DISTRIBUITI: TEORIA E CASI D\'USO',
+                course3_degree:      'Laurea Magistrale: DATA SCIENCE, CALCOLO SCIENTIFICO & INTELLIGENZA ARTIFICIALE Percorso: GENERICO (coorte: 2024)',
+                media1_type:         'Libro',
+                media1_title:        'I misteri della matematica',
+                media1_desc:         'Storia e significato magico dei numeri da zero a infinito. Un viaggio affascinante attraverso i concetti fondamentali della matematica.',
+                media1_link:         'Acquista su Amazon →',
+                media2_type:         'Video',
+                media2_title:        'Il mio avatar che discute di amore della scienza',
+                media2_desc:         "Una conversazione appassionata sull'importanza della scienza e della ricerca matematica nel mondo moderno.",
+                media2_link:         'Guarda su YouTube →',
+                media3_type:         'Pubblicazioni',
+                media3_title:        'Produzione scientifica',
+                media3_desc:         "Elenco completo delle pubblicazioni scientifiche sul portale istituzionale dell'Università degli Studi di Firenze.",
+                media3_link:         'Vedi su UniFi →',
+                gallery_hint:        'Scorri le immagini con le frecce o con lo swipe su mobile.',
+                footer_text:         '© 2026 Prof. Vincenzo Vespri - Università degli Studi di Firenze',
+            },
+            en: {
+                nav_home:            'Home',
+                nav_teaching:        'Teaching',
+                nav_media:           'Publications & Media',
+                nav_gallery:         'Gallery',
+                shake_hint:          '🥚 shake to flip 🥚',
+                hero_subtitle:       'Full Professor',
+                hero_ssd:            'SSD: MATH-03/A - Mathematical Analysis',
+                hero_dept:           "Department of Mathematics and Computer Science 'Ulisse Dini'",
+                hero_univ:           'University of Florence',
+                contact_email:       'Email:',
+                contact_tel:         'Tel:',
+                contact_address_label: 'Address:',
+                contact_address:     'Viale Morgagni 67/a, office n 5',
+                contact_page_label:  'UniFi page:',
+                contact_page_link:   'Institutional profile',
+                office_hours_title:  'Office Hours',
+                office_hours_value:  'By appointment',
+                course1_title:       'Mathematical Analysis',
+                course1_module:      'Module of [B035027] Foundations of Mathematics (C.I.)',
+                course1_degree:      'Bachelor: ARCHITECTURAL SCIENCES Track: GENERIC (cohort: 2025)',
+                course2_title:       'MATHEMATICAL ANALYSIS II',
+                course2_module:      'Module of [B024393] MATHEMATICAL ANALYSIS I/MATHEMATICAL ANALYSIS II C.I',
+                course2_degree:      'Bachelor: BIOMEDICAL ENGINEERING Track: GENERIC (cohort: 2025)',
+                course3_title:       'MATHEMATICAL MODELS FOR DISTRIBUTED LEDGERS: THEORY AND USE CASES',
+                course3_degree:      'Master: DATA SCIENCE, SCIENTIFIC COMPUTING & ARTIFICIAL INTELLIGENCE Track: GENERIC (cohort: 2024)',
+                media1_type:         'Book',
+                media1_title:        'The Mysteries of Mathematics',
+                media1_desc:         'History and magical significance of numbers from zero to infinity. A fascinating journey through the fundamental concepts of mathematics.',
+                media1_link:         'Buy on Amazon →',
+                media2_type:         'Video',
+                media2_title:        'My avatar discussing the love of science',
+                media2_desc:         'A passionate conversation about the importance of science and mathematical research in the modern world.',
+                media2_link:         'Watch on YouTube →',
+                media3_type:         'Publications',
+                media3_title:        'Scientific output',
+                media3_desc:         'Complete list of scientific publications on the institutional portal of the University of Florence.',
+                media3_link:         'View on UniFi →',
+                gallery_hint:        'Browse images with the arrows or swipe on mobile.',
+                footer_text:         '© 2026 Prof. Vincenzo Vespri - University of Florence',
+            },
+            zh: {
+                nav_home:            '首页',
+                nav_teaching:        '课程',
+                nav_media:           '出版物与媒体',
+                nav_gallery:         '图库',
+                shake_hint:          '摇一摇翻转图片',
+                hero_subtitle:       '正教授',
+                hero_ssd:            '学科领域：MATH-03/A - 数学分析',
+                hero_dept:           '数学与信息学系"乌利塞·迪尼"',
+                hero_univ:           '佛罗伦萨大学',
+                contact_email:       '邮箱：',
+                contact_tel:         '电话：',
+                contact_address_label: '地址：',
+                contact_address:     'Viale Morgagni 67/a，办公室 5',
+                contact_page_label:  'UniFi 页面：',
+                contact_page_link:   '机构主页',
+                office_hours_title:  '接待时间',
+                office_hours_value:  '预约制',
+                course1_title:       '数学分析',
+                course1_module:      '[B035027] 数学基础课程模块 (C.I.)',
+                course1_degree:      '学位：建筑科学 方向：通用（入学年份：2025）',
+                course2_title:       '数学分析 II',
+                course2_module:      '[B024393] 数学分析 I / 数学分析 II 综合课程模块',
+                course2_degree:      '学位：生物医学工程 方向：通用（入学年份：2025）',
+                course3_title:       '分布式账本的数学模型：理论与应用案例',
+                course3_degree:      '硕士学位：数据科学、科学计算与人工智能 方向：通用（入学年份：2024）',
+                media1_type:         '图书',
+                media1_title:        '数学的奥秘',
+                media1_desc:         '从零到无穷大，数字的历史与神奇意义。一段穿越数学基本概念的迷人旅程。',
+                media1_link:         '在 Amazon 购买 →',
+                media2_type:         '视频',
+                media2_title:        '我的虚拟形象谈论对科学的热爱',
+                media2_desc:         '一场关于科学与数学研究在现代世界重要性的热情对话。',
+                media2_link:         '在 YouTube 观看 →',
+                media3_type:         '学术出版物',
+                media3_title:        '科研成果',
+                media3_desc:         '佛罗伦萨大学官方门户上完整的学术出版物列表。',
+                media3_link:         '在 UniFi 查看 →',
+                gallery_hint:        '使用箭头或在移动设备上滑动浏览图片。',
+                footer_text:         '© 2026 文森佐·韦斯普里教授 - 佛罗伦萨大学',
+            }
+        };
+
+        let currentLang = 'it';
+
+        function setLang(lang) {
+            currentLang = lang;
+            const t = translations[lang];
+
+            // Update all data-i18n elements
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (t[key] !== undefined) {
+                    el.textContent = t[key];
+                }
+            });
+
+            // Update html lang attribute and page title
+            document.documentElement.lang = lang;
+            const titles = { it: 'Prof. Vincenzo Vespri - Matematico', en: 'Prof. Vincenzo Vespri - Mathematician', zh: '文森佐·韦斯普里教授 - 数学家' };
+            document.title = titles[lang];
+
+            // Update active button
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+
+        // =============================================
         // Mobile Navigation Toggle
+        // =============================================
         const mobileToggle = document.getElementById('mobileToggle');
         const navLinks = document.getElementById('navLinks');
 
@@ -1089,7 +1002,6 @@
             navLinks.classList.toggle('active');
         });
 
-        // Close mobile menu when clicking on a link
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 mobileToggle.classList.remove('active');
@@ -1100,58 +1012,41 @@
         // Navbar scroll effect
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
+            navbar.classList.toggle('scrolled', window.scrollY > 100);
         });
 
         // Scroll Animation for sections
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
+                if (entry.isIntersecting) entry.target.classList.add('visible');
             });
-        }, observerOptions);
+        }, { threshold: 0.1, rootMargin: '0px 0px -100px 0px' });
 
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-        // Smooth scroll for navigation links
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+            anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
         });
 
+        // =============================================
         // Gallery Carousel with Swipe
+        // =============================================
         const gallerySlider = document.getElementById('gallerySlider');
-        const galleryPrev = document.getElementById('galleryPrev');
-        const galleryNext = document.getElementById('galleryNext');
+        const galleryPrev   = document.getElementById('galleryPrev');
+        const galleryNext   = document.getElementById('galleryNext');
         const galleryDotsContainer = document.getElementById('galleryDots');
-        
+
         if (gallerySlider) {
             const slides = gallerySlider.querySelectorAll('.gallery-slide');
             let currentSlide = 0;
             let startX = 0;
             let isDragging = false;
 
-            // Create dots
             slides.forEach((_, index) => {
                 const dot = document.createElement('button');
                 dot.classList.add('gallery-dot');
@@ -1164,9 +1059,7 @@
 
             function updateSlider() {
                 gallerySlider.style.transform = `translateX(-${currentSlide * 100}%)`;
-                dots.forEach((dot, index) => {
-                    dot.classList.toggle('active', index === currentSlide);
-                });
+                dots.forEach((dot, index) => dot.classList.toggle('active', index === currentSlide));
             }
 
             function goToSlide(index) {
@@ -1174,214 +1067,113 @@
                 updateSlider();
             }
 
-            function nextSlide() {
-                currentSlide = (currentSlide + 1) % slides.length;
-                updateSlider();
-            }
+            function nextSlide() { currentSlide = (currentSlide + 1) % slides.length; updateSlider(); }
+            function prevSlide() { currentSlide = (currentSlide - 1 + slides.length) % slides.length; updateSlider(); }
 
-            function prevSlide() {
-                currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-                updateSlider();
-            }
-
-            // Button navigation
             galleryNext.addEventListener('click', nextSlide);
             galleryPrev.addEventListener('click', prevSlide);
 
-            // Touch/Swipe navigation
-            gallerySlider.addEventListener('touchstart', (e) => {
-                startX = e.touches[0].clientX;
-                isDragging = true;
-            });
-
-            gallerySlider.addEventListener('touchmove', (e) => {
-                if (!isDragging) return;
-            });
-
+            // Touch swipe
+            gallerySlider.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; isDragging = true; });
             gallerySlider.addEventListener('touchend', (e) => {
                 if (!isDragging) return;
                 isDragging = false;
-                
-                const endX = e.changedTouches[0].clientX;
-                const diff = startX - endX;
-                
-                // Swipe threshold
-                if (Math.abs(diff) > 50) {
-                    if (diff > 0) {
-                        nextSlide();
-                    } else {
-                        prevSlide();
-                    }
-                }
+                const diff = startX - e.changedTouches[0].clientX;
+                if (Math.abs(diff) > 50) { diff > 0 ? nextSlide() : prevSlide(); }
             });
 
-            // Mouse drag for desktop
+            // Mouse drag
             let mouseStartX = 0;
             let isMouseDragging = false;
 
-            gallerySlider.addEventListener('mousedown', (e) => {
-                mouseStartX = e.clientX;
-                isMouseDragging = true;
-                gallerySlider.style.cursor = 'grabbing';
-            });
-
-            gallerySlider.addEventListener('mousemove', (e) => {
-                if (!isMouseDragging) return;
-            });
-
+            gallerySlider.addEventListener('mousedown', (e) => { mouseStartX = e.clientX; isMouseDragging = true; gallerySlider.style.cursor = 'grabbing'; });
             gallerySlider.addEventListener('mouseup', (e) => {
                 if (!isMouseDragging) return;
                 isMouseDragging = false;
                 gallerySlider.style.cursor = 'grab';
-                
                 const diff = mouseStartX - e.clientX;
-                
-                if (Math.abs(diff) > 50) {
-                    if (diff > 0) {
-                        nextSlide();
-                    } else {
-                        prevSlide();
-                    }
-                }
+                if (Math.abs(diff) > 50) { diff > 0 ? nextSlide() : prevSlide(); }
             });
-
-            gallerySlider.addEventListener('mouseleave', () => {
-                if (isMouseDragging) {
-                    isMouseDragging = false;
-                    gallerySlider.style.cursor = 'grab';
-                }
-            });
+            gallerySlider.addEventListener('mouseleave', () => { isMouseDragging = false; gallerySlider.style.cursor = 'grab'; });
 
             // Keyboard navigation
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'ArrowLeft') prevSlide();
                 if (e.key === 'ArrowRight') nextSlide();
             });
-
-            // Auto-play (optional - uncomment to enable)
-            // setInterval(nextSlide, 5000);
         }
 
-        // Image Swap on Shake/Tap - Toggle between normal and samurai
-        const heroPhoto = document.querySelector('.hero-photo');
+        // =============================================
+        // Image Swap on Shake/Tap
+        // =============================================
+        const heroPhoto    = document.querySelector('.hero-photo');
         const imageWrapper = document.querySelector('.image-wrapper');
-        
-        const normalImage = 'https://raw.githubusercontent.com/piccoloplay/repoImages/main/profilo.png';
+
+        const normalImage  = 'https://raw.githubusercontent.com/piccoloplay/repoImages/main/profilo.png';
         const samuraiImage = 'https://raw.githubusercontent.com/piccoloplay/repoImages/main/samurai.png';
-        let isSamurai = false;
+        let isSamurai   = false;
         let isAnimating = false;
-        
-        console.log('Hero photo found:', heroPhoto);
-        console.log('Image wrapper found:', imageWrapper);
-        
+
         function triggerFlip() {
-            console.log('FLIP TRIGGERED!');
             heroPhoto.style.animation = 'none';
-            setTimeout(() => {
-                heroPhoto.style.animation = 'flipCoin 1.5s ease-in-out';
-            }, 10);
+            setTimeout(() => { heroPhoto.style.animation = 'flipCoin 1.5s ease-in-out'; }, 10);
         }
-        
+
         function toggleImage() {
             if (isAnimating) return;
             isAnimating = true;
-            console.log('TOGGLE IMAGE!');
-            
             triggerFlip();
-            
             setTimeout(() => {
-                if (isSamurai) {
-                    heroPhoto.src = normalImage;
-                    isSamurai = false;
-                    console.log('Switched to normal');
-                } else {
-                    heroPhoto.src = samuraiImage;
-                    isSamurai = true;
-                    console.log('Switched to samurai');
-                }
+                heroPhoto.src = isSamurai ? normalImage : samuraiImage;
+                isSamurai = !isSamurai;
             }, 750);
-            
             setTimeout(() => { isAnimating = false; }, 1600);
         }
 
-        // Tap/Click - usa touchend per evitare doppio fire con click
         let touchHandled = false;
-        
         if (imageWrapper) {
             imageWrapper.addEventListener('touchend', (e) => {
                 e.preventDefault();
                 touchHandled = true;
-                console.log('Touch tap!');
                 toggleImage();
                 setTimeout(() => { touchHandled = false; }, 300);
             });
-            
-            imageWrapper.addEventListener('click', (e) => {
-                if (touchHandled) return; // Ignora click se già gestito da touch
-                console.log('Image clicked!');
-                toggleImage();
-            });
-            
+            imageWrapper.addEventListener('click', () => { if (!touchHandled) toggleImage(); });
             imageWrapper.style.cursor = 'pointer';
         }
 
         // Shake Detection
         let lastX = null, lastY = null, lastZ = null;
         let shakeCount = 0;
-        
         window.addEventListener('devicemotion', (event) => {
             const acc = event.accelerationIncludingGravity;
-            
             if (lastX !== null) {
-                const deltaX = Math.abs(acc.x - lastX);
-                const deltaY = Math.abs(acc.y - lastY);
-                const deltaZ = Math.abs(acc.z - lastZ);
-                const delta = deltaX + deltaY + deltaZ;
-                
+                const delta = Math.abs(acc.x - lastX) + Math.abs(acc.y - lastY) + Math.abs(acc.z - lastZ);
                 if (delta > 25) {
                     shakeCount++;
-                    if (shakeCount > 2) {
-                        console.log('SHAKE DETECTED!');
-                        triggerFlip();
-                        toggleImage();
-                        shakeCount = 0;
-                        setTimeout(() => { shakeCount = 0; }, 1000);
-                    }
+                    if (shakeCount > 2) { triggerFlip(); toggleImage(); shakeCount = 0; }
                 }
             }
-            
-            lastX = acc.x;
-            lastY = acc.y;
-            lastZ = acc.z;
+            lastX = acc.x; lastY = acc.y; lastZ = acc.z;
         });
-        
+
+        // =============================================
         // Network Nodes Background
+        // =============================================
         const canvas = document.getElementById('quantum-bg');
-        const ctx = canvas.getContext('2d');
+        const ctx    = canvas.getContext('2d');
 
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
+        function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
         resizeCanvas();
-        window.addEventListener('resize', () => {
-            resizeCanvas();
-            initNodes();
-        });
+        window.addEventListener('resize', () => { resizeCanvas(); initNodes(); });
 
-        const MAX_DIST = 160;
+        const MAX_DIST  = 160;
         const NODE_COUNT = 60;
         let nodes = [];
         let mouse = { x: null, y: null };
 
-        window.addEventListener('mousemove', e => {
-            mouse.x = e.clientX;
-            mouse.y = e.clientY;
-        });
-        window.addEventListener('mouseleave', () => {
-            mouse.x = null;
-            mouse.y = null;
-        });
+        window.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
+        window.addEventListener('mouseleave', () => { mouse.x = null; mouse.y = null; });
 
         class Node {
             constructor() {
@@ -1393,84 +1185,52 @@
                 this.pulse = Math.random() * Math.PI * 2;
                 this.pulseSpeed = Math.random() * 0.02 + 0.01;
             }
-
             update() {
                 this.x += this.vx;
                 this.y += this.vy;
                 this.pulse += this.pulseSpeed;
-
                 if (this.x < 0 || this.x > canvas.width)  this.vx *= -1;
                 if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
-
-                // Mouse repulsion
                 if (mouse.x !== null) {
-                    const dx = this.x - mouse.x;
-                    const dy = this.y - mouse.y;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
-                    if (dist < 100) {
-                        this.x += (dx / dist) * 1.5;
-                        this.y += (dy / dist) * 1.5;
-                    }
+                    const dx = this.x - mouse.x, dy = this.y - mouse.y;
+                    const dist = Math.sqrt(dx*dx + dy*dy);
+                    if (dist < 100) { this.x += (dx/dist)*1.5; this.y += (dy/dist)*1.5; }
                 }
             }
-
             draw() {
-                const glow = 0.5 + 0.5 * Math.sin(this.pulse);
+                const glow  = 0.5 + 0.5 * Math.sin(this.pulse);
                 const alpha = 0.4 + 0.4 * glow;
-                const r = this.radius + glow * 1.5;
-
-                // Glow
-                const grad = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, r * 4);
-                grad.addColorStop(0, `rgba(255,255,255,${alpha * 0.6})`);
+                const r     = this.radius + glow * 1.5;
+                const grad  = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, r*4);
+                grad.addColorStop(0, `rgba(255,255,255,${alpha*0.6})`);
                 grad.addColorStop(1, `rgba(255,255,255,0)`);
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, r * 4, 0, Math.PI * 2);
-                ctx.fillStyle = grad;
-                ctx.fill();
-
-                // Core
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, r, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(255,255,255,${alpha})`;
-                ctx.fill();
+                ctx.beginPath(); ctx.arc(this.x, this.y, r*4, 0, Math.PI*2);
+                ctx.fillStyle = grad; ctx.fill();
+                ctx.beginPath(); ctx.arc(this.x, this.y, r, 0, Math.PI*2);
+                ctx.fillStyle = `rgba(255,255,255,${alpha})`; ctx.fill();
             }
         }
 
-        function initNodes() {
-            nodes = Array.from({ length: NODE_COUNT }, () => new Node());
-        }
+        function initNodes() { nodes = Array.from({ length: NODE_COUNT }, () => new Node()); }
 
         function drawConnections() {
             for (let i = 0; i < nodes.length; i++) {
-                for (let j = i + 1; j < nodes.length; j++) {
-                    const dx = nodes[i].x - nodes[j].x;
-                    const dy = nodes[i].y - nodes[j].y;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
-
+                for (let j = i+1; j < nodes.length; j++) {
+                    const dx = nodes[i].x - nodes[j].x, dy = nodes[i].y - nodes[j].y;
+                    const dist = Math.sqrt(dx*dx + dy*dy);
                     if (dist < MAX_DIST) {
-                        const alpha = (1 - dist / MAX_DIST) * 0.35;
-                        ctx.beginPath();
-                        ctx.moveTo(nodes[i].x, nodes[i].y);
-                        ctx.lineTo(nodes[j].x, nodes[j].y);
-                        ctx.strokeStyle = `rgba(255,255,255,${alpha})`;
-                        ctx.lineWidth = 0.8;
-                        ctx.stroke();
+                        const alpha = (1 - dist/MAX_DIST) * 0.35;
+                        ctx.beginPath(); ctx.moveTo(nodes[i].x, nodes[i].y); ctx.lineTo(nodes[j].x, nodes[j].y);
+                        ctx.strokeStyle = `rgba(255,255,255,${alpha})`; ctx.lineWidth = 0.8; ctx.stroke();
                     }
                 }
-
-                // Connect to mouse
                 if (mouse.x !== null) {
-                    const dx = nodes[i].x - mouse.x;
-                    const dy = nodes[i].y - mouse.y;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    const dx = nodes[i].x - mouse.x, dy = nodes[i].y - mouse.y;
+                    const dist = Math.sqrt(dx*dx + dy*dy);
                     if (dist < MAX_DIST * 1.5) {
-                        const alpha = (1 - dist / (MAX_DIST * 1.5)) * 0.6;
-                        ctx.beginPath();
-                        ctx.moveTo(nodes[i].x, nodes[i].y);
-                        ctx.lineTo(mouse.x, mouse.y);
-                        ctx.strokeStyle = `rgba(255,255,255,${alpha})`;
-                        ctx.lineWidth = 1;
-                        ctx.stroke();
+                        const alpha = (1 - dist/(MAX_DIST*1.5)) * 0.6;
+                        ctx.beginPath(); ctx.moveTo(nodes[i].x, nodes[i].y); ctx.lineTo(mouse.x, mouse.y);
+                        ctx.strokeStyle = `rgba(255,255,255,${alpha})`; ctx.lineWidth = 1; ctx.stroke();
                     }
                 }
             }
@@ -1478,15 +1238,13 @@
 
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            drawConnections();
             nodes.forEach(n => { n.update(); n.draw(); });
+            drawConnections();
             requestAnimationFrame(animate);
         }
 
         initNodes();
         animate();
-
-
     </script>
 </body>
 </html>
