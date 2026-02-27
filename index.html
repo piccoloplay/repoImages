@@ -26,7 +26,7 @@
 
         body {
             font-family: 'DM Sans', sans-serif;
-            background: var(--light);
+            background: #0d1b2a;
             color: var(--text);
             line-height: 1.6;
             overflow-x: hidden;
@@ -1046,21 +1046,12 @@
             <div class="gallery-slider" id="gallerySlider">
                 <div class="gallery-slide">
                     <img src="https://raw.githubusercontent.com/piccoloplay/repoImages/main/1.jpeg" alt="Ricerca matematica">
-                    <div class="gallery-overlay">
-                        <p class="gallery-caption">Ricerca in analisi matematica e equazioni differenziali</p>
-                    </div>
                 </div>
                 <div class="gallery-slide">
                     <img src="https://raw.githubusercontent.com/piccoloplay/repoImages/main/2.jpg" alt="Conferenza">
-                    <div class="gallery-overlay">
-                        <p class="gallery-caption">Conferenza internazionale di matematica applicata</p>
-                    </div>
                 </div>
                 <div class="gallery-slide">
                     <img src="https://raw.githubusercontent.com/piccoloplay/repoImages/main/3.jpeg" alt="Seminario">
-                    <div class="gallery-overlay">
-                        <p class="gallery-caption">Seminario accademico presso l'Università di Firenze</p>
-                    </div>
                 </div>
             </div>
 
@@ -1082,10 +1073,8 @@
         <div class="footer-container">
             <p class="footer-text">© 2026 Prof. Vincenzo Vespri - Università degli Studi di Firenze</p>
             <div class="footer-links">
-                <a href="https://www.unifi.it/" target="_blank">UniFi</a>
-                <a href="https://www.dimai.unifi.it/" target="_blank">DiMaI</a>
-                <a href="mailto:vincenzo.vespri@unifi.it">Email</a>
                 <a href="vespri-website-en.html">English Version</a>
+                <a href="vespri-website-zh.html">Chinese Version</a>
             </div>
         </div>
     </footer>
@@ -1432,8 +1421,8 @@
 
                 // Glow
                 const grad = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, r * 4);
-                grad.addColorStop(0, `rgba(201,159,104,${alpha * 0.8})`);
-                grad.addColorStop(1, `rgba(201,159,104,0)`);
+                grad.addColorStop(0, `rgba(255,255,255,${alpha * 0.6})`);
+                grad.addColorStop(1, `rgba(255,255,255,0)`);
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, r * 4, 0, Math.PI * 2);
                 ctx.fillStyle = grad;
@@ -1442,7 +1431,7 @@
                 // Core
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, r, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(201,159,104,${alpha})`;
+                ctx.fillStyle = `rgba(255,255,255,${alpha})`;
                 ctx.fill();
             }
         }
@@ -1459,12 +1448,12 @@
                     const dist = Math.sqrt(dx * dx + dy * dy);
 
                     if (dist < MAX_DIST) {
-                        const alpha = (1 - dist / MAX_DIST) * 0.25;
+                        const alpha = (1 - dist / MAX_DIST) * 0.35;
                         ctx.beginPath();
                         ctx.moveTo(nodes[i].x, nodes[i].y);
                         ctx.lineTo(nodes[j].x, nodes[j].y);
-                        ctx.strokeStyle = `rgba(45,66,99,${alpha})`;
-                        ctx.lineWidth = 1;
+                        ctx.strokeStyle = `rgba(255,255,255,${alpha})`;
+                        ctx.lineWidth = 0.8;
                         ctx.stroke();
                     }
                 }
@@ -1475,11 +1464,11 @@
                     const dy = nodes[i].y - mouse.y;
                     const dist = Math.sqrt(dx * dx + dy * dy);
                     if (dist < MAX_DIST * 1.5) {
-                        const alpha = (1 - dist / (MAX_DIST * 1.5)) * 0.5;
+                        const alpha = (1 - dist / (MAX_DIST * 1.5)) * 0.6;
                         ctx.beginPath();
                         ctx.moveTo(nodes[i].x, nodes[i].y);
                         ctx.lineTo(mouse.x, mouse.y);
-                        ctx.strokeStyle = `rgba(201,159,104,${alpha})`;
+                        ctx.strokeStyle = `rgba(255,255,255,${alpha})`;
                         ctx.lineWidth = 1;
                         ctx.stroke();
                     }
